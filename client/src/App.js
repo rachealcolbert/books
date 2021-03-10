@@ -6,6 +6,10 @@ import Navbar from "./components/Navbar";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 
+const client = new ApolloClient({
+  uri: "http://localhost:3001/graphql",
+});
+
 function App() {
   return (
     <Router>
