@@ -1,14 +1,21 @@
 const { User } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
-const { signtoken } = require("../utils/auth");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    // get use by username
+    // get user by username
     user: async () => {
       return User.find({ username })
         .select("-__v -password")
         .populate("savedBooks");
+    },
+    me: async (parent, args) => {
+      const userData = await User.findOne({})
+        .select("-__v -password")
+        .populate("savedBooks");
+
+      return userData;
     },
     Mutation: {
       addUser: async (parent, args) => {
