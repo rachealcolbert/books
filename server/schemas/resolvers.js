@@ -42,7 +42,7 @@ const resolvers = {
       },
       saveBook: async (parent, args, context) => {
         if (context.user) {
-          const book = await book.create({
+          const saveABook = await Book.create({
             ...args,
             username: context.user.username,
           });
@@ -52,11 +52,22 @@ const resolvers = {
             { $push: { savedBooks: book._id } },
             { new: true }
           );
-          return book;
+          return saveABook;
         }
-        throw new AuthenticationError('You need to log in')
+        throw new AuthenticationError("You need to log in");
       },
-      removeBook
+      removeBook: async (parent, args, context) => {
+        if (context.user) {
+          const deleteBook = await Book.findOneAndDelete(
+            { _id: context.user._id },
+            { $remove: { book: bookId } },
+            { new: true }
+          ).populate("savedBooks");
+
+          return deleteBook;
+        }
+        throw new AuthenticationError("You need to log in");
+      },
     },
   },
 };
