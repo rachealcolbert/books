@@ -4,6 +4,7 @@ const { ApolloServer } = require("apollo-server-express");
 
 //import typeDefs and resolvers
 const { typeDefs, resolvers } = require("./schemas");
+const { authMiddleware } = require("./utils/auth");
 
 const path = require("path");
 const db = require("./config/connection");
@@ -15,6 +16,7 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: authMiddleware,
 });
 
 //integrate Apollo sever with the Express application
@@ -29,5 +31,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 db.once("open", () => {
-  app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
+  app.listen(PORT, () =>
+    console.log(`🌍 Now listening on localhost:${PORT}${server.graphqlPath}`)
+  );
 });
