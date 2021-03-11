@@ -4,7 +4,7 @@ Made for avid readers and book lovers, this web application allows users to sear
 
 **Link to GitHub Repo:** https://github.com/rachealcolbert/books
 
-**Link to Deployed App:**
+**Link to Deployed App:** https://fierce-mountain-11051.herokuapp.com/
 
 **Screenshot of Application:**
 
