@@ -4,15 +4,14 @@ import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 
-import Auth from "../../utils/auth";
-import auth from "../../../server/utils/auth";
+import Auth from "../utils/auth";
 
 const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
   const logout = (event) => {
     event.preventDefault();
-    auth.logout();
+    Auth.logout();
   };
 
   return (
