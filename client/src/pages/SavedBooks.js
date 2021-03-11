@@ -9,7 +9,7 @@ import {
 import { getMe, deleteBook } from "../utils/API";
 import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_ME } from "../utils/queries";
 
 const SavedBooks = () => {
@@ -18,6 +18,7 @@ const SavedBooks = () => {
   });
 
   const userData = data?.userData || {};
+  const []
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
